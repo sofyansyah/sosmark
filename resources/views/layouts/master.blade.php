@@ -52,9 +52,9 @@
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
     <script src="{{asset('js/custom-file-input.js')}}"></script>
     <script src="{{asset('js/bootstrap-toggle.js')}}"></script>
-    <script src="{{asset('js/jquery.min.js')}}" type="text/javascript"></script>
-    <script src="{{asset('js/jquery.highchartTable.js')}}" type="text/javascript"></script>
-    <script src="{{asset('js/jquery.highchartTable-min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/jquery-1.11.3.min.js')}}" type="text/javascript"></script>
+    
+    
 
 
   </body>
