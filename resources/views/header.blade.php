@@ -1,18 +1,3 @@
-<style type="text/css">
-  .navbar{
-    border-radius: 0;
-    border: none;
-  }
-  .navbar-inverse{
-    background-color: #333;
-    color: #fafafa;
-    font-size: 15px;
-  }
-  .btn-default{
-    border-color: #ddd;
-  }
-</style>
-
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
