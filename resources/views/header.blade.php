@@ -1,18 +1,3 @@
-<style type="text/css">
-  .navbar{
-    border-radius: 0;
-    border: none;
-  }
-  .navbar-inverse{
-    background-color: #333;
-    color: #fafafa;
-    font-size: 15px;
-  }
-  .btn-default{
-    border-color: #ddd;
-  }
-</style>
-
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -25,11 +10,11 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
     <ul class="nav navbar-nav">
-      <li class=""><a href="{{url('/')}}">Post</a></li>
-      <li class=""><a href="{{url('autofollow')}}">Auto Follow & Unfollow</a></li>
-      <li class="active"><a href="{{url('following')}}">Following</a></li>
-      <li><a href="{{url('whitelist')}}">Whitelist</a></li>
-      <li><a href="{{url('chart')}}">Analytic</a></li>
+      <li class="@if(Request::is('/')) active @endif"><a href="{{url('/')}}">Post</a></li>
+      <li class="@if(Request::is('autofollow')) active @endif"><a href="{{url('autofollow')}}">Auto Follow & Unfollow</a></li>
+      <li class="@if(Request::is('following')) active @endif"><a href="{{url('following')}}">Following</a></li>
+      <li class="@if(Request::is('whitelist')) active @endif"><a href="{{url('whitelist')}}">Whitelist</a></li>
+      <li class="@if(Request::is('chart')) active @endif"><a href="{{url('chart')}}">Analytic</a></li>
     </ul>
     <form class="navbar-form navbar-right">
       <div class="dropdown">

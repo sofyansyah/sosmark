@@ -25,3 +25,6 @@ Route::get('/chart', function () {
     return view('chart');
 });
 
+Route::get('/upload', function () {
+    return view('upload');
+});
