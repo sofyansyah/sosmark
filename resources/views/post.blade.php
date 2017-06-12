@@ -1,7 +1,10 @@
 @extends('layouts.master')
 
+@section('css_styles')
+<link rel="stylesheet" href="{{asset('css/dropzone.css')}}">
+<link rel="stylesheet" href="{{asset('css/date-picker.css')}}">
+@endsection
 @section('content')
-
 
 <div class="panel-body" style="padding-bottom: 0">
   <ul class="menu1">
@@ -92,22 +95,24 @@
     <div class="modal-content">
       <div class="modal-body">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <div class="form-group">
-          <label>Schedule Date & Time</label>
-          <input type="text" name="" class="form-control" placeholder="">
-        </div>
-        <div class="form-group">
-          <label>Caption</label>
-          <textarea name="" class="form-control"></textarea>
-        </div>
-        <div class="upload">
-          <input type="file" name="file-7[]" id="file-7" class="inputfile inputfile-6" data-multiple-caption="{count} files selected" style="visibility: hidden;float: right;" />
-          <label for="file-7"><span></span> <strong><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> Choose a file&hellip;</strong></label>
-        </div>
-         <a onclick="tambah()" style="cursor:pointer;text-decoration:underline;">Tambah Upload</a>
-        <div class="modal-footer">
-          <input type="submit" name="submit" class="btn btn-success" value="Submit" style="text-align: right;"> 
-        </div>
+      <form action="{{url('postalbum')}}" method="POST" enctype="multipart/form-data">
+      {{csrf_field()}}
+          <div class="form-group">
+            <label>Schedule Date & Time</label>
+            <input type="text" name="" class="form-control date-picker" placeholder="">
+          </div>
+          <div class="form-group">
+            <label>Caption</label>
+            <textarea name="" class="form-control"></textarea>
+          </div>
+            <div class="form-group">
+                <label>Foto</label>
+                <div class="dropzone" id="myId"></div>
+            </div>
+          <div class="modal-footer">
+            <button class="btn btn-success form-actions">Simpan</button>
+          </div>
+      </form>
       </div>
     </div>
   </div>
@@ -122,19 +127,25 @@
     <div class="modal-content">
       <div class="modal-body">
        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <form action="{{url('postsingle')}}" method="POST" enctype="multipart/form-data">
+      {{csrf_field()}}
        <div class="form-group">
         <label>Schedule Date & Time</label>
-        <input type="text" name="" class="form-control" placeholder="">
+        <input type="text" name="date" class="form-control date-picker">
       </div>
       <div class="form-group">
         <label>Caption</label>
         <textarea name="" class="form-control"></textarea>
       </div>
-      <input type="file" name="file-1[]" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} files selected " style="visibility: hidden;float: right;" />
-      <label for="file-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> <span>Choose a file&hellip;</span></label>
-      <div class="modal-footer">
-        <input type="submit" name="submit" class="btn btn-success" value="Submit" style="text-align: right;">
+      <div class="form-group">
+            <label>Foto</label>
+            <div class="dropzone" id="myIdol"></div>
       </div>
+      
+      <div class="modal-footer">
+        <button class="btn btn-success form-actions">Simpan</button>
+      </div>
+      </form>
     </div>
   </div>
 </div>
@@ -176,14 +187,55 @@
   </div>
 </div>
 </div>
-
-<script type="text/javascript">
-
-  function tambah(){
-    $(".upload").append('<input type="file" name="file-7[]" id="file-7" class="inputfile inputfile-6" data-multiple-caption="{count} files selected" style="visibility: hidden;float: right;" /><label for="file-7"><span></span> <strong><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> Choose a file&hellip;</strong></label>').children(':last');
-  }
+@endsection
+@section('javascript')
+<script src="{{asset('js/dropzone.js')}}"></script>
+<script src="{{asset('js/date-picker.js')}}"></script>
+<script>
+  $(".date-picker").datepicker();
 </script>
+<script type="text/javascript">
+        var baseUrl = "{{ url('/') }}";
+        var token = "{{csrf_token()}}";
+        Dropzone.autoDiscover = false;
+        var myDropzone = new Dropzone("div#myId", {
+            url: baseUrl + "/postfotoalbum",
+            params: {
+                _token: token
+            },
+            init: function () {
+                $(this.element).addClass("dropzone");
 
+                this.on("success", function (file) {                    
+                    $(".form-actions").append("<input type='hidden' name='foto[]' value='"+file.name+"'>");
+                });
+            },
+            paramName: "file", // The name that will be used to transfer the file
+            maxFilesize: 2, // MB
+            addRemoveLinks: true
+        });
+</script>
+<script type="text/javascript">
+        var baseUrl = "{{ url('/') }}";
+        var token = "{{csrf_token()}}";
+        Dropzone.autoDiscover = false;
+        var myDropzone = new Dropzone("div#myIdol", {
+            url: baseUrl + "/postfotosingle",
+            params: {
+                _token: token
+            },
+            init: function () {
+                $(this.element).addClass("dropzone");
+
+                this.on("success", function (file) {                    
+                    $(".form-actions").append("<input type='hidden' name='pict[]' value='"+file.name+"'>");
+                });
+            },
+            paramName: "file", // The name that will be used to transfer the file
+            maxFilesize: 2, // MB
+            addRemoveLinks: true
+        });
+</script>
 @endsection
 
 

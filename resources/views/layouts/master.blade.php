@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
 <head>
   <meta charset="utf-8">
@@ -47,7 +47,7 @@
 
 
 
- @yield('javascript')
+ 
     <!-- JS
     ================================================== -->
     <script src="{{asset('js/jquery.js')}}"></script>
@@ -55,9 +55,8 @@
     <script src="{{asset('js/custom-file-input.js')}}"></script>
     <script src="{{asset('js/bootstrap-toggle.js')}}"></script>
     <script src="{{asset('js/jquery-1.11.3.min.js')}}" type="text/javascript"></script>
-    <script src="{{asset('js/exporting.js')}}"></script>
     <script src="{{asset('js/highcharts.js')}}"></script>
-    
+    @yield('javascript')
     
 
 
