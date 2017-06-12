@@ -28,3 +28,9 @@ Route::get('/chart', function () {
 Route::get('/upload', function () {
     return view('upload');
 });
+
+Route::post('postfotoalbum', 'PostController@postfotoalbum');
+Route::post('postalbum', 'PostController@postalbum');
+
+Route::post('postfotosingle', 'PostController@postfotosingle');
+Route::post('postsingle', 'PostController@postsingle');
