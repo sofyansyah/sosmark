@@ -2,7 +2,6 @@
 
 @section('content')
 
-
 <div class="panel-body" style="padding-bottom: 0">
   <ul class="menu1">
     <li><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">+ Post</button></li>
@@ -165,9 +164,9 @@
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu varius ligula. Curabitur consectetur ipsum eget urna lobortis dapibus. Quisque ultricies ligula felis, sit amet suscipit libero maximus euismod</p>
         </div>
         <ul class="details">
-          <li><i class="fa fa-clock-o fa-lg"> 07.00</i></li>
-          <li><i class="fa fa-spinner fa-lg"> Process</i></li>
-          <li><i class="fa fa-calendar fa-lg"> Wednesday, 7 June 2017</i></li>
+          <li><i class="fa fa-clock-o fa-lg" style="color: #333;"> 07.00</i></li>
+          <li><i class="fa fa-spinner fa-lg" style="color: #333;"> Process</i></li>
+          <li><i class="fa fa-calendar fa-lg" style="color: #333;"> Wednesday, 7 June 2017</i></li>
         </ul>
       </div>
       <div class="modal-footer" style="border: none; padding: 0 10px;">
