@@ -2,7 +2,7 @@
 
 @section('css_styles')
 <link rel="stylesheet" href="{{asset('css/dropzone.css')}}">
-<link rel="stylesheet" href="{{asset('css/date-picker.css')}}">
+<link href="{{asset('css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet" media="screen">
 @endsection
 @section('content')
 
@@ -190,9 +190,18 @@
 @endsection
 @section('javascript')
 <script src="{{asset('js/dropzone.js')}}"></script>
-<script src="{{asset('js/date-picker.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/bootstrap-datetimepicker.js')}}" charset="UTF-8"></script>
 <script>
-  $(".date-picker").datepicker();
+      $('.date-picker').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1
+    });
 </script>
 <script type="text/javascript">
         var baseUrl = "{{ url('/') }}";
@@ -226,15 +235,17 @@
             },
             init: function () {
                 $(this.element).addClass("dropzone");
-
                 this.on("success", function (file) {                    
                     $(".form-actions").append("<input type='hidden' name='pict[]' value='"+file.name+"'>");
+                    $(".dz-details").append("<span class='badge badge-danger'>"+myDropzone.getAcceptedFiles().length+"</span>");
                 });
             },
             paramName: "file", // The name that will be used to transfer the file
+            maxFile: 10, // MB
             maxFilesize: 2, // MB
             addRemoveLinks: true
         });
+
 </script>
 @endsection
 
