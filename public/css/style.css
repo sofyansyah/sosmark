@@ -117,6 +117,13 @@ h4{
   border-radius:20px;
   border: none;
   padding: 8px 18px;
+  background-color: #74ea74;
+}
+.btn-danger{
+  background-color: #ff939c!important;
+}
+.btn-warning{
+  background-color: #ffc573!important;
 }
 
 .auto li{
