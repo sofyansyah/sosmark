@@ -2,7 +2,7 @@
 
 @section('css_styles')
 <link rel="stylesheet" href="{{asset('css/dropzone.css')}}">
-<link rel="stylesheet" href="{{asset('css/date-picker.css')}}">
+<link href="{{asset('css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet" media="screen">
 @endsection
 
 @section('content')
@@ -325,31 +325,40 @@
 @endsection
 @section('javascript')
 <script src="{{asset('js/dropzone.js')}}"></script>
-<script src="{{asset('js/date-picker.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/bootstrap-datetimepicker.js')}}" charset="UTF-8"></script>
 <script>
+
+      $('.date-picker').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1
+    });
+
   function myFunction() {
     document.getElementById("demo").innerHTML = "<button class='btn btn-success' style='padding:5px 25px;'>Save</buton>";
   }
 </script>
-<script>
-  $(".date-picker").datepicker();
-</script>
 <script type="text/javascript">
-  var baseUrl = "{{ url('/') }}";
-  var token = "{{csrf_token()}}";
-  Dropzone.autoDiscover = false;
-  var myDropzone = new Dropzone("div#myId",  {
-    url: baseUrl + "/postfotoalbum",
-    params: {
-      _token: token
-    },
-    init: function () {
-      $(this.element).addClass("dropzone");
+        var baseUrl = "{{ url('/') }}";
+        var token = "{{csrf_token()}}";
+        Dropzone.autoDiscover = false;
+        var myDropzone = new Dropzone("div#myId",  {
+          url: baseUrl + "/postfotoalbum",
+          params: {
+            _token: token
+          },
+          init: function () {
+            $(this.element).addClass("dropzone");
 
-      this.on("success", function (file) {                    
-        $(".form-actions").append("<input type='hidden' name='foto[]' value='"+file.name+"'>");
-      });
-    },
+            this.on("success", function (file) {                    
+              $(".form-actions").append("<input type='hidden' name='foto[]' value='"+file.name+"'>");
+            });
+          },
             paramName: "file", // The name that will be used to transfer the file
             maxFilesize: 2, // MB
             maxFiles: 1,
@@ -562,31 +571,8 @@
             maxFiles: 1,
             addRemoveLinks: true
           });
-        </script>
+        </script>        
+@endsection
 
-        <script type="text/javascript">
-          var baseUrl = "{{ url('/') }}";
-          var token = "{{csrf_token()}}";
-          Dropzone.autoDiscover = false;
-          var myDropzone = new Dropzone("div#myIdol", {
-
-            url: baseUrl + "/postfotosingle",
-            params: {
-              _token: token
-            },
-            init: function () {
-              $(this.element).addClass("dropzone");
-
-              this.on("success", function (file) {                    
-                $(".form-actions").append("<input type='hidden' name='pict[]' value='"+file.name+"'>");
-              });
-            },
-            paramName: "file", // The name that will be used to transfer the file
-            maxFilesize: 2, // MB
-            maxFiles: 1,
-            addRemoveLinks: true
-          });
-        </script>
-        @endsection
 
 
