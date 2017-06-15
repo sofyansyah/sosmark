@@ -8,6 +8,13 @@
   }
 </style>
 @section('content')
+<style type="text/css">
+  @media (max-width: 767px) {
+  .panel-body .col-md-12{
+    margin-top: 20px;
+}
+</style>
+
 <div class="panel-body">
  <div class="col-md-12" style="padding: 10px; border: 1px solid #ddd;">
   <h4>Daftar Following Anda</h4>
