@@ -8,7 +8,6 @@
 @section('content')
 
 <style>
-
   .dropzone{
     padding: 0!important;
     min-height: 0!important;
@@ -22,8 +21,18 @@
     font-size: 40px;
     color: #aaa;
   }
+  .dropzone .dz-preview .dz-image{
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+  }
+   .dropzone .dz-preview .dz-image img{
+    width: 168px;
+  }
   .dropzone .dz-preview.dz-image-preview{
     background: #fafafa!important;
+    margin: 0;
+    
   }
   .form-group .col-md-4{
    padding: 10px !important;
@@ -182,60 +191,60 @@
           </div>
           <div class="form-group">
             <label>Foto</label><br>
-            <div class="col-md-4">
+            <div class="col-md-4 col-sm-6 col-xs-12">
               <div class="dropzone" id="myId">
                 <div class="dz-default dz-message"><span>1</span>
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+             <div class="col-md-4 col-sm-6 col-xs-12">
               <div class="dropzone" id="myId1">
                 <div class="dz-default dz-message"><span>2</span>
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+             <div class="col-md-4 col-sm-6 col-xs-12">
               <div class="dropzone" id="myId2">
                 <div class="dz-default dz-message"><span>3</span>
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+             <div class="col-md-4 col-sm-6 col-xs-12">
               <div class="dropzone" id="myId3">
                 <div class="dz-default dz-message"><span>4</span>
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+             <div class="col-md-4 col-sm-6 col-xs-12">
               <div class="dropzone" id="myId4">
                 <div class="dz-default dz-message"><span>5</span>
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+             <div class="col-md-4 col-sm-6 col-xs-12">
               <div class="dropzone" id="myId5">
                 <div class="dz-default dz-message"><span>6</span>
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+             <div class="col-md-4 col-sm-6 col-xs-12">
               <div class="dropzone" id="myId6">
                 <div class="dz-default dz-message"><span>7</span>
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+             <div class="col-md-4 col-sm-6 col-xs-12">
               <div class="dropzone" id="myId7">
                 <div class="dz-default dz-message"><span>8</span>
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+             <div class="col-md-4 col-sm-6 col-xs-12">
               <div class="dropzone" id="myId8">
                 <div class="dz-default dz-message"><span>9</span>
                 </div></div>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="dropzone" id="myId9">
                   <div class="dz-default dz-message"><span>10</span>
                   </div>
@@ -272,10 +281,14 @@
             <textarea name="" class="form-control"></textarea>
           </div>
           <div class="form-group">
-            <label>Foto</label>
-            <div class="dropzone" id="myIdol"></div>
+            <label>Foto</label><br>
+             <div class="col-md-4 col-md-offset-4">
+              <div class="dropzone" id="myIdol">
+                <div class="dz-default dz-message"><span>1</span>
+                </div>
+              </div>
+            </div>
           </div>
-
           <div class="modal-footer">
             <button class="btn btn-success form-actions">Save</button>
           </div>
@@ -336,7 +349,7 @@
         todayHighlight: 1,
         startView: 2,
         forceParse: 0,
-        showMeridian: 1
+        // showMeridian: 1
     });
 
   function myFunction() {
@@ -571,7 +584,30 @@
             maxFiles: 1,
             addRemoveLinks: true
           });
-        </script>        
+        </script>  
+
+        <script type="text/javascript">
+          var baseUrl = "{{ url('/') }}";
+          var token = "{{csrf_token()}}";
+          Dropzone.autoDiscover = false;
+          var myDropzone = new Dropzone("div#myIdol",  {
+            url: baseUrl + "/postfotosingle",
+            params: {
+              _token: token
+            },
+            init: function () {
+              $(this.element).addClass("dropzone");
+
+              this.on("success", function (file) {                    
+                $(".form-actions").append("<input type='hidden' name='foto[]' value='"+file.name+"'>");
+              });
+            },
+            paramName: "file", // The name that will be used to transfer the file
+            maxFilesize: 2, // MB
+            maxFiles: 1,
+            addRemoveLinks: true
+          });
+        </script>         
 @endsection
 
 

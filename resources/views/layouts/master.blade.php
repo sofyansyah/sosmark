@@ -20,19 +20,8 @@
   ================================================== -->
   <link rel="stylesheet" href="{{asset('css/font-awesome.css')}}">
   <link href="{{asset('css/bootstrap.css')}}" rel="stylesheet" type="text/css">
-  <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
-  <link href="{{asset('css/normalize.css')}}" rel="stylesheet" type="text/css">
-  <link href="{{asset('css/demo.css')}}" rel="stylesheet" type="text/css">
-  <link href="{{asset('css/component.css')}}" rel="stylesheet" type="text/css">
-  <link href="{{asset('css/bootstrap-toggle.css')}}" rel="stylesheet" type="text/css">
-  <link href="{{asset('css/bootstrap-toggle.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="{{asset('css/font-awesome.css')}}">
-
-
-
 </head>
-
 <body>
 
   <div class="container">
@@ -50,12 +39,9 @@
  
     <!-- JS
     ================================================== -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="{{asset('js/jquery.3.2.1.js')}}"></script>
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('js/custom-file-input.js')}}"></script>
-    <script src="{{asset('js/bootstrap-toggle.js')}}"></script>
-    <script src="{{asset('js/jquery-1.11.3.min.js')}}" type="text/javascript"></script>
-    <script src="{{asset('js/highcharts.js')}}"></script>
+   
     @yield('javascript')
     
 

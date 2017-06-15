@@ -1,6 +1,17 @@
 @extends('layouts.master')
 
 @section('content')
+<style type="text/css">
+  @media (max-width: 767px) {
+  .panel-body .col-md-5{
+    margin-top: 20px;
+  }
+  .panel-body .col-md-7{
+    margin-top:20px;
+  }
+}
+</style>
+
 <div class="panel-body">
  <div class="col-md-5" style="padding: 10px; border: 1px solid #ddd;">
    <ul class="auto">
