@@ -12,6 +12,7 @@
 */
 
 Route::get('/', function () {
+    // echo memory_get_usage();
     return view('post');
 });
 Route::get('/autofollow', function () {
