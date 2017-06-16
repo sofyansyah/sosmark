@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    // echo memory_get_usage();
-    return view('post');
-});
 Route::get('/autofollow', function () {
     return view('autofollow');
 });
@@ -30,8 +26,11 @@ Route::get('/upload', function () {
     return view('upload');
 });
 
+Route::get('/', 'PostController@index');
 Route::post('postfotoalbum', 'PostController@postfotoalbum');
 Route::post('postalbum', 'PostController@postalbum');
 
 Route::post('postfotosingle', 'PostController@postfotosingle');
 Route::post('postsingle', 'PostController@postsingle');
+Route::get('postsingle/hapus/{id}', 'PostController@hapussingle');
+Route::post('postsingle/edit/{id}', 'PostController@editsingle');
