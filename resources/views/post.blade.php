@@ -79,7 +79,7 @@
         <div class="hover11 column">
           <div>
             <figure>
-              <img src="{{url('img/'.$foto->foto)}}" width="100%" height="150" data-toggle="modal" data-target="#myModal{{$data->id}}" style="cursor:pointer;"/>
+              <img src="{{url('img/'.$foto->foto)}}" width="100%" height="150" onerror="this.src = 'img/icon/video.png';" data-toggle="modal" data-target="#myModal{{$data->id}}" style="cursor:pointer; background-color: #fff;"/>
             </figure>
             <ul class="details1">
               <li><i class="fa fa-clock-o fa-lg"> {{date('H:i',strtotime($data->tanggal))}}</i></li>
@@ -98,7 +98,7 @@
     <!-- Modal picture -->
     <div class="modal fade" id="myModal{{$data->id}}" role="dialog">
       <div class="modal-dialog modal-lg">
-        
+
         @if($data->type == 'post')
         <!-- Modal SINGLE-->
         <div class="modal-content">
@@ -135,8 +135,11 @@
               <li><i class="fa fa-calendar fa-lg" style="color: #333;"> {{date('D, d M Y',strtotime($data->tanggal))}}</i></li>
             </ul>
           </div>
+          <div class="modal-footer">
+          </div>
         </div>
       </div>
+
 
       @elseif($data->type == 'album')
       <!-- MODAL ALBUM -->
@@ -229,7 +232,6 @@
             <div class="form-group">
               <label>Schedule Date & Time</label>
 
-              <input type="text" name="" class="form-control date-picker" placeholder="<?phpdate_default_timezone_set("Asia/Jakarta");echo date("Y/m/d h:m");?>">
               <input type="text" name="date" class="form-control date-picker" placeholder="<?php date_default_timezone_set("Asia/Jakarta");echo date("Y/m/d h:m");?>">
 
             </div>
@@ -322,7 +324,7 @@
             {{csrf_field()}}
             <div class="form-group">
               <label>Schedule Date & Time</label>
-              <input type="text" name="date" class="form-control date-picker">
+              <input type="text" name="date" class="form-control date-picker" placeholder="<?php date_default_timezone_set("Asia/Jakarta");echo date("Y/m/d h:m");?>">
             </div>
             <div class="form-group">
               <label>Caption</label>
@@ -615,7 +617,7 @@
               });
             },
             paramName: "file", // The name that will be used to transfer the file
-            maxFilesize: 2, // MB
+            maxFilesize: 10, // MB
             maxFiles: 1,
             addRemoveLinks: true
           });
