@@ -183,7 +183,7 @@
               {{csrf_field()}}
               <div class="form-group">
                 <label>Schedule Date & Time</label>
-                <input type="text" name="" class="form-control date-picker" placeholder="<?php date_default_timezone_set("Asia/Jakarta");echo date("Y/m/d h:m");?>">
+                <input type="text" name="" class="form-control date-picker" placeholder="<?phpdate_default_timezone_set("Asia/Jakarta");echo date("Y/m/d h:m");?>">
               </div>
               <div class="form-group">
                 <label>Caption</label>
