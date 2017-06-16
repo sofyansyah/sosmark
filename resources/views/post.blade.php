@@ -79,7 +79,7 @@
         <div class="hover11 column">
           <div>
             <figure>
-              <img src="{{url('img/'.$foto->foto)}}" width="100%" height="150" onerror="this.src = 'img/icon/video.png';" data-toggle="modal" data-target="#myModal{{$data->id}}" style="cursor:pointer; background-color: #fff;"/>
+              <img src="{{url('img/'.$foto->foto)}}" width="100%" height="200" onerror="this.src = 'img/icon/video.png';" data-toggle="modal" data-target="#myModal{{$data->id}}" style="cursor:pointer; background-color: #fff;"/>
             </figure>
             <ul class="details1">
               <li><i class="fa fa-clock-o fa-lg"> {{date('H:i',strtotime($data->tanggal))}}</i></li>
