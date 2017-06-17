@@ -79,7 +79,7 @@
         <div class="hover11 column">
           <div>
             <figure>
-              <img src="{{url('img/'.$foto->foto)}}" width="100%" height="150" data-toggle="modal" data-target="#myModal{{$data->id}}" style="cursor:pointer;"/>
+              <img src="{{url('img/'.$foto->foto)}}" width="100%" height="200" onerror="this.src = 'img/icon/video.png';" data-toggle="modal" data-target="#myModal{{$data->id}}" style="cursor:pointer; background-color: #fff;"/>
             </figure>
             <ul class="details1">
               <li><i class="fa fa-clock-o fa-lg"> {{date('H:i',strtotime($data->tanggal))}}</i></li>
@@ -93,13 +93,13 @@
       </div>
     </div>
 
-<!-- MODAL -->
+    <!-- MODAL -->
 
- <!-- Modal picture -->
+    <!-- Modal picture -->
     <div class="modal fade" id="myModal{{$data->id}}" role="dialog">
       <div class="modal-dialog modal-lg">
-    
-    @if($data->type == 'post')
+
+        @if($data->type == 'post')
         <!-- Modal SINGLE-->
         <div class="modal-content">
           <div class="modal-body" style="padding:0; overflow: hidden;">
@@ -121,11 +121,11 @@
               <p class="caption">{{$data->caption}}</p>
 
               <form action="{{url('postsingle/edit/'.$data->id)}}" method="POST" class="form">
-                  {{csrf_field()}}
-                  <div class="form-group">
-                    <textarea name="caption" class="form-control" cols="30" rows="10">{{$data->caption}}</textarea>
-                  </div>
-                  <div id="demo" style="float: right; margin-top:20px; "></div>
+                {{csrf_field()}}
+                <div class="form-group">
+                  <textarea name="caption" class="form-control" cols="30" rows="10">{{$data->caption}}</textarea>
+                </div>
+                <div id="demo" style="float: right; margin-top:20px; "></div>
               </form>
 
             </div>
@@ -135,65 +135,68 @@
               <li><i class="fa fa-calendar fa-lg" style="color: #333;"> {{date('D, d M Y',strtotime($data->tanggal))}}</i></li>
             </ul>
           </div>
+          <div class="modal-footer">
+          </div>
         </div>
       </div>
 
+
       @elseif($data->type == 'album')
       <!-- MODAL ALBUM -->
-          @php
-            $foto_album = \App\Foto::where('id_album',$data->id)->where('type','album')->get();
-            $foto1 = \App\Foto::where('id_album',$data->id)->where('type','album')->first();
-          @endphp
+      @php
+      $foto_album = \App\Foto::where('id_album',$data->id)->where('type','album')->get();
+      $foto1 = \App\Foto::where('id_album',$data->id)->where('type','album')->first();
+      @endphp
 
-            <div class="modal-content" style="overflow: hidden;">
-              <div class="col-md-8" style="padding: 0px;">
-                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                  <!-- Wrapper for slides -->
-                  <div class="carousel-inner">
-                    @foreach($foto_album as $v)
-                    <div class="item @if($v->id == $foto1->id ) active @endif">
-                      <img class="img-responsive" src="{{asset('img/'.$v->foto)}}">
-                    </div>
-                    @endforeach
-                  </div>
-                  <!-- Controls -->
-                  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                  </a>
-                  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                  </a>
-                </div>
+      <div class="modal-content" style="overflow: hidden;">
+        <div class="col-md-8" style="padding: 0px;">
+          <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+              @foreach($foto_album as $v)
+              <div class="item @if($v->id == $foto1->id ) active @endif">
+                <img class="img-responsive" src="{{asset('img/'.$v->foto)}}">
               </div>
-              <div class="col-md-4" style="padding: 15px 30px;">
-               <div class="dropdown pull-right">
-                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                  <i class="fa fa-ellipsis-h"></i></button>
-                  <ul class="dropdown-menu">
-                    <li><a onclick="myFunction()">Edit</a></li>
-                    <li><a href="{{url('postsingle/hapus/'.$data->id)}}">Delete</a></li>
-                  </ul>
-                </div>
-                <div class="form-group">
-                  <label>Caption</label>
-                  <p class="caption">{{$data->caption}}</p>
-
-                  <form action="{{url('postsingle/edit/'.$data->id)}}" method="POST" class="form">
-                      {{csrf_field()}}
-                      <div class="form-group">
-                        <textarea name="caption" class="form-control" cols="30" rows="10">{{$data->caption}}</textarea>
-                      </div>
-                      <div id="demo" style="float: right; margin-top:20px; "></div>
-                  </form>
-
-                </div>
-                <ul class="details">
-                  <li><i class="fa fa-clock-o fa-lg" style="color: #333;"> {{date('H:i',strtotime($data->tanggal))}}</i></li>
-                  {{-- <li><i class="fa fa-spinner fa-lg" style="color: #333;"> Process</i></li> --}}
-                  <li><i class="fa fa-calendar fa-lg" style="color: #333;"> {{date('D, d M Y',strtotime($data->tanggal))}}</i></li>
-                </ul>
-              </div>
+              @endforeach
             </div>
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4" style="padding: 15px 30px;">
+         <div class="dropdown pull-right">
+          <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+            <i class="fa fa-ellipsis-h"></i></button>
+            <ul class="dropdown-menu">
+              <li><a onclick="myFunction()">Edit</a></li>
+              <li><a href="{{url('postsingle/hapus/'.$data->id)}}">Delete</a></li>
+            </ul>
+          </div>
+          <div class="form-group">
+            <label>Caption</label>
+            <p class="caption">{{$data->caption}}</p>
+
+            <form action="{{url('postsingle/edit/'.$data->id)}}" method="POST" class="form">
+              {{csrf_field()}}
+              <div class="form-group">
+                <textarea name="caption" class="form-control" cols="30" rows="10">{{$data->caption}}</textarea>
+              </div>
+              <div id="demo" style="float: right; margin-top:20px; "></div>
+            </form>
+
+          </div>
+          <ul class="details">
+            <li><i class="fa fa-clock-o fa-lg" style="color: #333;"> {{date('H:i',strtotime($data->tanggal))}}</i></li>
+            {{-- <li><i class="fa fa-spinner fa-lg" style="color: #333;"> Process</i></li> --}}
+            <li><i class="fa fa-calendar fa-lg" style="color: #333;"> {{date('D, d M Y',strtotime($data->tanggal))}}</i></li>
+          </ul>
+        </div>
+      </div>
       @endif
 
 
@@ -204,144 +207,146 @@
 
 
 
-    @empty
-    <div class="col-md-12">
-      <div class="alert alert-info text-center">
-        <p>Sorry data has empty</p>
-      </div>
+  @empty
+  <div class="col-md-12">
+    <div class="alert alert-info text-center">
+      <p>Sorry data has empty</p>
     </div>
-    @endforelse
+  </div>
+  @endforelse
 
-   
+  
 
 
 
-    <!-- Modal -->
-    <div class="modal fade" id="myModal1" role="dialog">
-      <div class="modal-dialog">
+  <!-- Modal -->
+  <div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-body">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <form action="{{url('postalbum')}}" method="POST" enctype="multipart/form-data">
-              {{csrf_field()}}
-              <div class="form-group">
-                <label>Schedule Date & Time</label>
-                <input type="text" name="date" class="form-control date-picker" placeholder="<?php date_default_timezone_set("Asia/Jakarta");echo date("Y/m/d h:m");?>">
-              </div>
-              <div class="form-group">
-                <label>Caption</label>
-                <textarea name="caption" class="form-control"></textarea>
-              </div>
-              <div class="form-group">
-                <label>Foto</label><br>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                  <div class="dropzone" id="myId">
-                    <div class="dz-default dz-message"><span>1</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                  <div class="dropzone" id="myId1">
-                    <div class="dz-default dz-message"><span>2</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                  <div class="dropzone" id="myId2">
-                    <div class="dz-default dz-message"><span>3</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                  <div class="dropzone" id="myId3">
-                    <div class="dz-default dz-message"><span>4</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                  <div class="dropzone" id="myId4">
-                    <div class="dz-default dz-message"><span>5</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                  <div class="dropzone" id="myId5">
-                    <div class="dz-default dz-message"><span>6</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                  <div class="dropzone" id="myId6">
-                    <div class="dz-default dz-message"><span>7</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                  <div class="dropzone" id="myId7">
-                    <div class="dz-default dz-message"><span>8</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                  <div class="dropzone" id="myId8">
-                    <div class="dz-default dz-message"><span>9</span>
-                    </div></div>
-                  </div>
-                  <div class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="dropzone" id="myId9">
-                      <div class="dz-default dz-message"><span>10</span>
-                      </div>
-                    </div>
-                  </div>
-                </div><br>
-                <div class="modal-footer">
-                  <button class="btn btn-success form-actions">Save</button>
-                </div>
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-body">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <form action="{{url('postalbum')}}" method="POST" enctype="multipart/form-data">
+            {{csrf_field()}}
+            <div class="form-group">
+              <label>Schedule Date & Time</label>
 
-              </form>
+              <input type="text" name="date" class="form-control date-picker" placeholder="<?php date_default_timezone_set("Asia/Jakarta");echo date("Y/m/d h:m");?>">
+
             </div>
-          </div>
-        </div>
-      </div>
-
-
-      <!-- Modal -->
-      <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-body">
-             <button type="button" class="close" data-dismiss="modal">&times;</button>
-             <form action="{{url('postsingle')}}" method="POST" enctype="multipart/form-data">
-              {{csrf_field()}}
-              <div class="form-group">
-                <label>Schedule Date & Time</label>
-                <input type="text" name="date" class="form-control date-picker">
-              </div>
-              <div class="form-group">
-                <label>Caption</label>
-                <textarea name="caption" class="form-control"></textarea>
-              </div>
-              <div class="form-group">
-                <label>Foto</label><br>
-                <div class="col-md-4 col-md-offset-4">
-                  <div class="dropzone" id="myIdol">
-                    <div class="dz-default dz-message"><span>1</span>
-                    </div>
+            <div class="form-group">
+              <label>Caption</label>
+              <textarea name="caption" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+              <label>Foto</label><br>
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="dropzone" id="myId">
+                  <div class="dz-default dz-message"><span>1</span>
                   </div>
                 </div>
               </div>
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="dropzone" id="myId1">
+                  <div class="dz-default dz-message"><span>2</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="dropzone" id="myId2">
+                  <div class="dz-default dz-message"><span>3</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="dropzone" id="myId3">
+                  <div class="dz-default dz-message"><span>4</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="dropzone" id="myId4">
+                  <div class="dz-default dz-message"><span>5</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="dropzone" id="myId5">
+                  <div class="dz-default dz-message"><span>6</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="dropzone" id="myId6">
+                  <div class="dz-default dz-message"><span>7</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="dropzone" id="myId7">
+                  <div class="dz-default dz-message"><span>8</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="dropzone" id="myId8">
+                  <div class="dz-default dz-message"><span>9</span>
+                  </div></div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                  <div class="dropzone" id="myId9">
+                    <div class="dz-default dz-message"><span>10</span>
+                    </div>
+                  </div>
+                </div>
+              </div><br>
               <div class="modal-footer">
                 <button class="btn btn-success form-actions">Save</button>
               </div>
+
             </form>
           </div>
         </div>
       </div>
     </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-body">
+           <button type="button" class="close" data-dismiss="modal">&times;</button>
+           <form action="{{url('postsingle')}}" method="POST" enctype="multipart/form-data">
+            {{csrf_field()}}
+            <div class="form-group">
+              <label>Schedule Date & Time</label>
+              <input type="text" name="date" class="form-control date-picker" placeholder="<?php date_default_timezone_set("Asia/Jakarta");echo date("Y/m/d h:m");?>">
+            </div>
+            <div class="form-group">
+              <label>Caption</label>
+              <textarea name="caption" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+              <label>Foto</label><br>
+              <div class="col-md-4 col-md-offset-4">
+                <div class="dropzone" id="myIdol">
+                  <div class="dz-default dz-message"><span>1</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-success form-actions">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
   @endsection
   @section('javascript')
   <script src="{{asset('js/dropzone.js')}}"></script>
@@ -612,7 +617,7 @@
               });
             },
             paramName: "file", // The name that will be used to transfer the file
-            maxFilesize: 12, // MB
+            maxFilesize: 10, // MB
             maxFiles: 1,
             addRemoveLinks: true
           });
