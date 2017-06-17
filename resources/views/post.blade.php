@@ -102,7 +102,7 @@
     @if($data->type == 'post')
         <!-- Modal SINGLE-->
         <div class="modal-content">
-          <div class="modal-body" style="padding:0;">
+          <div class="modal-body" style="padding:0; overflow: hidden;">
            <button type="button" class="close" data-dismiss="modal">&times;</button>
            <div class="col-md-8" style="padding:0;">
             <img src="{{asset('img/'.$foto->foto)}}" width="100%" />
@@ -612,7 +612,7 @@
               });
             },
             paramName: "file", // The name that will be used to transfer the file
-            maxFilesize: 2, // MB
+            maxFilesize: 12, // MB
             maxFiles: 1,
             addRemoveLinks: true
           });
